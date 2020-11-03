@@ -2,24 +2,24 @@
 
 Just a small Discord bot used on our server, so far has 4 commands:  
 
-- RandomName  
+- **RandomName**     
 Produces a random name from the template [FirstName] [Adjective/Quantity][Verb], also uses alliteration if possible, producing names like:  
     - Danny Deadplants
     - Sally Sixcrumpets
     - Richie Rotten Shirts
     - Stevie Sixjeans
-- Combine
+- **Combine**  
 Combines X amount of emojis together into a single emoji. This was an idea that spawned from [Twitch.tv](http://www.twitch.tv)'s emotes that could be overlaid onto others, such as the Ice Block at Christmas. Can take in custom emojis or unicode emojis (using Twemoji). Also allows for optional overrides on the position/width/height. Produces results such as:  
 ![Example of Combine](https://i.imgur.com/kOmgDer.png)  
 ![Another Example of Combine](https://i.imgur.com/7uDwrdn.png)
-- Meme
+- **Meme**
 Produces an image of an emoji with text overlaid on the top and bottom, similar to the old meme formats, producing:
 ![Example of meme](https://i.imgur.com/JbON6Un.png)  
-- Help
+- **Help**    
 Posts an embed with the commands and how to use them.
 ![Help Command](https://i.imgur.com/XIVyPTb.png)  
 
-## Usage
+## Usage   
 
 1. Download the code / Clone the repo
 2. Run `npm install` or `yarn install`
