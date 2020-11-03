@@ -44,8 +44,6 @@ Posts an embed with the commands and how to use them.
     Discord bot API
 - **Dotenv**
     Allows environment variables to be set using the .env file
-- **Emoji-regex**
-    Provides a regex to test for unicode emojis
 - **Twemoji**
     Allows conversion of emoji unicode to pngs
 

@@ -1,11 +1,10 @@
 import { prefix, cooldown } from "./settings.json";
 import { parse } from "twemoji";
 import { MessageAttachment } from "discord.js";
-const emojiRegex = require("emoji-regex/RGI_Emoji");
+import UNICODE_EMOJI_REGEX from "./EmojiRegex";
 
 //#region Name Generators
 import { GetName } from "./../NameGenerators/Wacky/WackyNameGen";
-import { Utils } from "./../NameGenerators/Utils/Utils";
 //#endregion
 
 //#region Image Creators
@@ -20,7 +19,6 @@ import { HelpMessage } from "./HelpCommandEmbed";
 //#endregion
 
 const CUSTOM_EMOJI_REGEX = RegExp("<:(\\w+):(\\w+)>");
-const UNICODE_EMOJI_REGEX = emojiRegex();
 const OVERRIDES_REGEX = RegExp("^-?[0-9]+,-?[0-9]+,-?[0-9]+,-?[0-9]+");
 
 let nextMessageAllowed = 0;
@@ -122,8 +120,8 @@ async function RetrieveEmojiFromTwemoji(arg) {
 			parse(arg, (icon) => {
 				resolve(icon);
 			});
-		} catch (error) {
-			reject({ error: "emoji not found" });
+		} catch (err) {
+			reject(err);
 		}
 	});
 }

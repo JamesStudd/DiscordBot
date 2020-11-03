@@ -1,5 +1,5 @@
 {
-  "name": "Happy Friend Time Bot",
+  "name": "HappyFriendTimeBot",
   "version": "1.0.0",
   "description": "Just a few unrelated commands for fun",
   "main": "Bot/app.js",
@@ -14,7 +14,6 @@
     "canvas": "^2.6.1",
     "discord.js": "^12.4.1",
     "dotenv": "^8.2.0",
-    "emoji-regex": "^9.2.0",
     "twemoji": "^13.0.1"
   },
   "devDependencies": {
