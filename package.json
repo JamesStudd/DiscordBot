@@ -1,0 +1,25 @@
+{
+  "name": "Happy Friend Time Bot",
+  "version": "1.0.0",
+  "description": "Just a few unrelated commands for fun",
+  "main": "Bot/app.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node Bot/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "James Studd",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "discord.js": "^12.4.1",
+    "dotenv": "^8.2.0",
+    "emoji-regex": "^9.2.0",
+    "twemoji": "^13.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1"
+  }
+}
