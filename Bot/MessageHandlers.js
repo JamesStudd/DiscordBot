@@ -65,7 +65,10 @@ async function HandleMessage(msg, command, args) {
 		case "genre":
 			if (EveryNoise) {
 				const { genreName, link } = RandomElement(EveryNoise);
-				msg.channel.send(`Why not try ${genreName}? -- ${link}`);
+				let capitalized = CapitalizeFirstLetters(genreName);
+				msg.channel.send(`Why not try **${capitalized}**? -- ${link}`);
+			} else {
+				msg.channel.send("Try again in a few seconds...");
 			}
 			break;
 		case "help":
@@ -136,6 +139,12 @@ function CheckOverridesExist(arg) {
 		}
 	}
 	return { emoji: emojiName, overrides: null };
+}
+
+function CapitalizeFirstLetters(sentence) {
+	return sentence.replace(/(^\w{1})|(\s{1}\w{1})/g, (match) =>
+		match.toUpperCase()
+	);
 }
 
 async function RetrieveEmojiFromTwemoji(arg) {

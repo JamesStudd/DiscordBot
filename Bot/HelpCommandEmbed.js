@@ -25,6 +25,11 @@ export const HelpMessage = {
 			name: "?meme :emoji: first line - second line",
 			value: "Posts an emoji with text overlay.",
 		},
+		{
+			name: "?genre",
+			value:
+				"Gets a random genre from EveryNoise as well as a Spotify playlist link.",
+		},
 	],
 	timestamp: new Date(),
 	footer: {

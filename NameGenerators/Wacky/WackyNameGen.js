@@ -13,7 +13,7 @@ export function GetName(input) {
 			name =
 				Start.find(
 					(word) => word.toLowerCase().indexOf(input) !== -1
-				) || RandomElement(Start);
+				) || input.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase());
 		}
 	} else {
 		name = RandomElement(Start);
