@@ -53,21 +53,21 @@ async function HandleMessage(msg, command, args) {
 async function HandleCombineCommand(msg, args) {
 	let emojis = [];
 	for (const arg of args) {
-		let result = CheckOverridesExist(arg);
-		if (CUSTOM_EMOJI_REGEX.test(result.emoji)) {
-			let exec = CUSTOM_EMOJI_REGEX.exec(result.emoji);
+		const { emoji, overrides } = CheckOverridesExist(arg);
+		if (CUSTOM_EMOJI_REGEX.test(emoji)) {
+			let exec = CUSTOM_EMOJI_REGEX.exec(emoji);
 			let emojiId = exec[2];
 			emojis.push({
 				type: "custom",
 				id: emojiId,
-				overrides: result.overrides,
+				overrides,
 			});
-		} else if (UNICODE_EMOJI_REGEX.test(result.emoji)) {
-			let icon = await RetrieveEmojiFromTwemoji(result.emoji);
+		} else if (UNICODE_EMOJI_REGEX.test(emoji)) {
+			let icon = await RetrieveEmojiFromTwemoji(emoji);
 			emojis.push({
 				type: "inbuilt",
 				id: icon,
-				overrides: result.overrides,
+				overrides,
 			});
 		}
 	}
