@@ -45,7 +45,11 @@ Posts an embed with the commands and how to use them.
 - **Dotenv**  
     Allows environment variables to be set using the .env file
 - **Twemoji**  
-    Allows conversion of emoji unicode to pngs
+    Converts emoji unicode to pngs  
+- **Axios**  
+    Makes web requests that are used for scraping the EveryNoise website  
+- **Cheerio**  
+    Takes data from web requests and parses it so that it can be searched through for specific html tags  
 
 ### Dev
 - **Babel**  
