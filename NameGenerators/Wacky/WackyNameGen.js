@@ -1,8 +1,23 @@
 import { Start, Middle, End } from "./options.json";
 import { RandomElement } from "../../Utils/Utils";
 
-export function GetName() {
-	let name = RandomElement(Start);
+export function GetName(input) {
+	let name;
+	if (input) {
+		input = input.toLowerCase();
+		if (input.length == 1) {
+			name =
+				Start.find((word) => word[0].toLowerCase() === input) ||
+				RandomElement(Start);
+		} else {
+			name =
+				Start.find(
+					(word) => word.toLowerCase().indexOf(input) !== -1
+				) || RandomElement(Start);
+		}
+	} else {
+		name = RandomElement(Start);
+	}
 	let middle =
 		Middle.find(
 			(word) => word[0].toLowerCase() === name[0].toLowerCase()

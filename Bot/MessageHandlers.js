@@ -58,7 +58,7 @@ async function HandleMessage(msg, command, args) {
 		case "combine":
 			return await HandleCombineCommand(msg, args);
 		case "randomname":
-			msg.channel.send(GetName());
+			msg.channel.send(GetName(args[0]));
 			break;
 		case "meme":
 			return await HandleMemeCommand(msg, args);
