@@ -1,10 +1,8 @@
-const options = require("./options.json");
-const Utils = require("./../Utils/Utils").Utils;
+import { First, Last } from "./options.json";
+import { RandomElement } from "./../Utils/Utils";
 
-const GetName = () => {
-	let name = Utils.RandomElement(options.First);
-	let last = Utils.RandomElement(options.Last);
+export function GetName() {
+	let name = RandomElement(First);
+	let last = RandomElement(Last);
 	return `${name} The ${last}`;
-};
-
-exports.GetName = GetName;
+}

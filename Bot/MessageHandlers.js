@@ -3,6 +3,10 @@ import { parse } from "twemoji";
 import { MessageAttachment } from "discord.js";
 import UNICODE_EMOJI_REGEX from "./EmojiRegex";
 
+//#region Util
+import { RandomElement } from "./../Utils/Utils";
+//#endregion
+
 //#region Name Generators
 import { GetName } from "./../NameGenerators/Wacky/WackyNameGen";
 //#endregion
@@ -14,12 +18,26 @@ import {
 } from "../ImageCreators/ImageCreators";
 //#endregion
 
+//#region Every Noise
+import { ScrapeEveryNoise } from "../Spotify/ScrapeEveryNoiseAtOnce";
+//#endregion
+
 //#region Help Command
 import { HelpMessage } from "./HelpCommandEmbed";
 //#endregion
 
 const CUSTOM_EMOJI_REGEX = RegExp("<:(\\w+):(\\w+)>");
 const OVERRIDES_REGEX = RegExp("^-?[0-9]+,-?[0-9]+,-?[0-9]+,-?[0-9]+");
+let EveryNoise;
+
+ScrapeEveryNoise()
+	.then((data) => {
+		console.log(`Scraped Every Noise, retrieved ${data.length} entries.`);
+		EveryNoise = data;
+	})
+	.catch((err) => {
+		console.log("Failed to scrape Every Noise", err);
+	});
 
 let nextMessageAllowed = 0;
 
@@ -44,6 +62,12 @@ async function HandleMessage(msg, command, args) {
 			break;
 		case "meme":
 			return await HandleMemeCommand(msg, args);
+		case "genre":
+			if (EveryNoise) {
+				const { genreName, link } = RandomElement(EveryNoise);
+				msg.channel.send(`Why not try ${genreName}? -- ${link}`);
+			}
+			break;
 		case "help":
 			msg.channel.send({ embed: HelpMessage });
 			break;

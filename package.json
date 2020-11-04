@@ -5,15 +5,19 @@
   "main": "Bot/app.js",
   "scripts": {
     "dev": "nodemon --exec babel-node Bot/app.js",
+    "spotify": "nodemon --exec babel-node Spotify/ScrapeEveryNoiseAtOnce.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "James Studd",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.21.0",
     "canvas": "^2.6.1",
+    "cheerio": "^1.0.0-rc.3",
     "discord.js": "^12.4.1",
     "dotenv": "^8.2.0",
+    "spotify-web-api-node": "^5.0.0",
     "twemoji": "^13.0.1"
   },
   "devDependencies": {
