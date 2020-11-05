@@ -1,12 +1,14 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const fs = require("fs");
+const path = require("path");
 
 async function fetch(url) {
 	const { data } = await axios.get(url);
 	return cheerio.load(data);
 }
 
-export async function ScrapeEveryNoise() {
+(async () => {
 	const $ = await fetch("http://everynoise.com/everynoise1d.cgi?scope=all");
 	let genres = [];
 
@@ -23,5 +25,9 @@ export async function ScrapeEveryNoise() {
 		}
 	});
 
-	return genres;
-}
+	console.log("Writing genres to file");
+	fs.writeFileSync(
+		path.join(__dirname, "cached.json"),
+		JSON.stringify(genres)
+	);
+})();

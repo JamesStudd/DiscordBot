@@ -19,7 +19,7 @@ import {
 //#endregion
 
 //#region Every Noise
-import { ScrapeEveryNoise } from "../Spotify/ScrapeEveryNoiseAtOnce";
+import { GetRandomGenre } from "../Spotify/EveryNoiseGenre";
 //#endregion
 
 //#region Help Command
@@ -28,16 +28,6 @@ import { HelpMessage } from "./HelpCommandEmbed";
 
 const CUSTOM_EMOJI_REGEX = RegExp("<:(\\w+):(\\w+)>");
 const OVERRIDES_REGEX = RegExp("^-?[0-9]+,-?[0-9]+,-?[0-9]+,-?[0-9]+");
-let EveryNoise;
-
-ScrapeEveryNoise()
-	.then((data) => {
-		console.log(`Scraped Every Noise, retrieved ${data.length} entries.`);
-		EveryNoise = data;
-	})
-	.catch((err) => {
-		console.log("Failed to scrape Every Noise", err);
-	});
 
 let nextMessageAllowed = 0;
 
@@ -46,8 +36,14 @@ export function ProcessMessage(msg) {
 		const args = msg.content.slice(prefix.length).trim().split(" ");
 		const command = args.shift().toLowerCase();
 
-		if (Date.now() > nextMessageAllowed) {
-			nextMessageAllowed = Date.now() + cooldown;
+		let date = new Date();
+		if (date.getTime() > nextMessageAllowed) {
+			nextMessageAllowed = date.getTime() + cooldown;
+			console.log(
+				`Command \"${command}\" executed by ${
+					msg.author.username
+				} at ${date.toLocaleString()}`
+			);
 			HandleMessage(msg, command, args);
 		}
 	}
@@ -56,20 +52,18 @@ export function ProcessMessage(msg) {
 async function HandleMessage(msg, command, args) {
 	switch (command) {
 		case "combine":
-			return await HandleCombineCommand(msg, args);
+			await HandleCombineCommand(msg, args);
+			break;
 		case "randomname":
 			msg.channel.send(GetName(args[0]));
 			break;
 		case "meme":
-			return await HandleMemeCommand(msg, args);
+			await HandleMemeCommand(msg, args);
+			break;
 		case "genre":
-			if (EveryNoise) {
-				const { genreName, link } = RandomElement(EveryNoise);
-				let capitalized = CapitalizeFirstLetters(genreName);
-				msg.channel.send(`Why not try **${capitalized}**? -- ${link}`);
-			} else {
-				msg.channel.send("Try again in a few seconds...");
-			}
+			const { genreName, link } = GetRandomGenre(args[0]);
+			let capitalized = CapitalizeFirstLetters(genreName);
+			msg.channel.send(`Why not try **${capitalized}**? -- ${link}`);
 			break;
 		case "help":
 			msg.channel.send({ embed: HelpMessage });

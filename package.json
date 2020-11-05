@@ -5,7 +5,7 @@
   "main": "Bot/app.js",
   "scripts": {
     "dev": "nodemon --exec babel-node Bot/app.js",
-    "spotify": "nodemon --exec babel-node Spotify/ScrapeEveryNoiseAtOnce.js",
+    "spotify": "nodemon --exec babel-node Spotify/EveryNoiseGenre.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

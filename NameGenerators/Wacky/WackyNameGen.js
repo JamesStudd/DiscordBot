@@ -6,16 +6,18 @@ export function GetName(input) {
 	if (input) {
 		input = input.toLowerCase();
 		if (input.length == 1) {
-			name =
-				Start.find((word) => word[0].toLowerCase() === input) ||
-				RandomElement(Start);
+			let possibleNames = Start.filter(
+				(word) => word[0].toLowerCase() === input
+			);
+			name = RandomElement(possibleNames);
 		} else {
-			name =
-				Start.find(
-					(word) => word.toLowerCase().indexOf(input) !== -1
-				) || input.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase());
+			let possibleNames = Start.filter(
+				(word) => word.toLowerCase().indexOf(input) !== -1
+			);
+			name = RandomElement(possibleNames);
 		}
-	} else {
+	}
+	if (!name) {
 		name = RandomElement(Start);
 	}
 	let middle =
