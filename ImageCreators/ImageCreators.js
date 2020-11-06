@@ -5,17 +5,12 @@ const BASE_TWEMOJI = "https://twemoji.maxcdn.com/v/13.0.1/";
 const TWEMOJI_SIZE = "72x72/";
 const FILE_EXTENSION = ".png";
 
-export async function CreateCombinedImage(emojis) {
-	const size = 128;
-	const canvas = createCanvas(size, size);
-	const context = canvas.getContext("2d");
-
+async function DrawEmojis(emojis, size, context) {
 	for (const emoji of emojis) {
 		const x = emoji.overrides ? emoji.overrides[0] : 0;
 		const y = emoji.overrides ? emoji.overrides[1] : 0;
 		const width = emoji.overrides ? emoji.overrides[2] : size;
 		const height = emoji.overrides ? emoji.overrides[3] : size;
-
 		if (emoji.type == "custom") {
 			const img = await loadImage(
 				`${BASE_EMOJI_URL}${emoji.id}${FILE_EXTENSION}`
@@ -28,25 +23,23 @@ export async function CreateCombinedImage(emojis) {
 			context.drawImage(img, x, y, width, height);
 		}
 	}
+}
+
+export async function CreateCombinedImage(emojis) {
+	const size = 128;
+	const canvas = createCanvas(size, size);
+	const context = canvas.getContext("2d");
+
+	await DrawEmojis(emojis, size, context);
 	return canvas.toBuffer("image/png");
 }
 
-export async function CreateMeme(topText, bottomText, emoji) {
+export async function CreateMeme(topText, bottomText, emojis) {
 	const size = 256;
 	const canvas = createCanvas(size, size);
 	const context = canvas.getContext("2d");
 
-	if (emoji.type == "custom") {
-		const img = await loadImage(
-			`${BASE_EMOJI_URL}${emoji.id}${FILE_EXTENSION}`
-		);
-		context.drawImage(img, 0, 0, size, size);
-	} else if (emoji.type == "inbuilt") {
-		const img = await loadImage(
-			`${BASE_TWEMOJI}${TWEMOJI_SIZE}${emoji.id}${FILE_EXTENSION}`
-		);
-		context.drawImage(img, 0, 0, size, size);
-	}
+	await DrawEmojis(emojis, size, context);
 
 	context.fillStyle = "white";
 	context.strokeStyle = "black";

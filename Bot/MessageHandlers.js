@@ -71,26 +71,28 @@ async function HandleMessage(msg, command, args) {
 	}
 }
 
+async function GetEmojiFromInput(emoji) {
+	if (CUSTOM_EMOJI_REGEX.test(emoji)) {
+		let exec = CUSTOM_EMOJI_REGEX.exec(emoji);
+		let emojiId = exec[2];
+		return { type: "custom", id: emojiId };
+	} else if (UNICODE_EMOJI_REGEX.test(emoji)) {
+		let icon = await RetrieveEmojiFromTwemoji(emoji);
+		return { type: "inbuilt", id: icon };
+	}
+	return { error: "Failed to find" };
+}
+
 async function HandleCombineCommand(msg, args) {
 	let emojis = [];
 	for (const arg of args) {
 		const { emoji, overrides } = CheckOverridesExist(arg);
-		if (CUSTOM_EMOJI_REGEX.test(emoji)) {
-			let exec = CUSTOM_EMOJI_REGEX.exec(emoji);
-			let emojiId = exec[2];
-			emojis.push({
-				type: "custom",
-				id: emojiId,
-				overrides,
-			});
-		} else if (UNICODE_EMOJI_REGEX.test(emoji)) {
-			let icon = await RetrieveEmojiFromTwemoji(emoji);
-			emojis.push({
-				type: "inbuilt",
-				id: icon,
-				overrides,
-			});
+		const { type, id, error } = await GetEmojiFromInput(emoji);
+		if (error) {
+			console.log(`Failed to find an emoji for ${emoji}`);
+			continue;
 		}
+		emojis.push({ type, id, overrides });
 	}
 	let image = await CreateCombinedImage(emojis);
 	msg.channel.send("", {
@@ -99,21 +101,20 @@ async function HandleCombineCommand(msg, args) {
 }
 
 async function HandleMemeCommand(msg, args) {
-	let emojiName = args[0];
-	let emoji = {};
-	if (CUSTOM_EMOJI_REGEX.test(emojiName)) {
-		let exec = CUSTOM_EMOJI_REGEX.exec(emojiName);
-		let emojiId = exec[2];
-		emoji = { type: "custom", id: emojiId };
-	} else if (UNICODE_EMOJI_REGEX.test(emojiName)) {
-		let icon = await RetrieveEmojiFromTwemoji(emojiName);
-		emoji = { type: "inbuilt", id: icon };
+	let emojis = [];
+	for (const arg of args) {
+		const { type, id, error } = await GetEmojiFromInput(arg);
+		if (error) {
+			break;
+		}
+		emojis.push({ type, id });
 	}
+	if (emojis.length === 0) return;
 
-	let firstLine = args.slice(1, args.indexOf("-")).join(" ");
+	let firstLine = args.slice(emojis.length, args.indexOf("-")).join(" ");
 	let secondLine = args.slice(args.indexOf("-") + 1).join(" ");
 
-	let image = await CreateMeme(firstLine, secondLine, emoji);
+	let image = await CreateMeme(firstLine, secondLine, emojis);
 	msg.channel.send("", { files: [new MessageAttachment(image, "meme.png")] });
 }
 
