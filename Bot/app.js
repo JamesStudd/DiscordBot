@@ -1,6 +1,6 @@
 require("dotenv").config();
 import { Client } from "discord.js";
-const client = new Client();
+export const client = new Client();
 import { ProcessMessage } from "./MessageHandlers";
 
 client.on("ready", () => {

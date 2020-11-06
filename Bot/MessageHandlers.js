@@ -2,10 +2,7 @@ import { prefix, cooldown } from "./settings.json";
 import { parse } from "twemoji";
 import { MessageAttachment } from "discord.js";
 import UNICODE_EMOJI_REGEX from "./EmojiRegex";
-
-//#region Util
-import { RandomElement } from "./../Utils/Utils";
-//#endregion
+import { client } from "./app";
 
 //#region Name Generators
 import { GetName } from "./../NameGenerators/Wacky/WackyNameGen";
@@ -79,6 +76,11 @@ async function GetEmojiFromInput(emoji) {
 	} else if (UNICODE_EMOJI_REGEX.test(emoji)) {
 		let icon = await RetrieveEmojiFromTwemoji(emoji);
 		return { type: "inbuilt", id: icon };
+	} else {
+		let foundEmoji = client.emojis.cache.find((e) => e.name == emoji);
+		if (foundEmoji) {
+			return { type: "custom", id: foundEmoji.id };
+		}
 	}
 	return { error: "Failed to find" };
 }
@@ -103,11 +105,12 @@ async function HandleCombineCommand(msg, args) {
 async function HandleMemeCommand(msg, args) {
 	let emojis = [];
 	for (const arg of args) {
-		const { type, id, error } = await GetEmojiFromInput(arg);
+		const { emoji, overrides } = CheckOverridesExist(arg);
+		const { type, id, error } = await GetEmojiFromInput(emoji);
 		if (error) {
 			break;
 		}
-		emojis.push({ type, id });
+		emojis.push({ type, id, overrides });
 	}
 	if (emojis.length === 0) return;
 
