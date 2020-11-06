@@ -18,6 +18,9 @@ Produces an image of an emoji with text overlaid on the top and bottom, similar 
 - **Help**    
 Posts an embed with the commands and how to use them.
 ![Help Command](https://i.imgur.com/XIVyPTb.png)  
+- **Genre**   
+Gets a random emoji from the scraped "EveryNoise" data, can optionally pass in a word and it'll try and find something related, IE "rock" could bring up "German Post-rock". Posts the genre in the chat as well as a link to the Spotify playlist.    
+![Genre command](https://i.imgur.com/8pXW0hg.png)   
 
 ## Usage   
 
