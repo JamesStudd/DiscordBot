@@ -22,7 +22,8 @@ Posts an embed with the commands and how to use them.
 Gets a random emoji from the scraped "EveryNoise" data, can optionally pass in a word and it'll try and find something related, IE "rock" could bring up "German Post-rock". Posts the genre in the chat as well as a link to the Spotify playlist.    
 ![Genre command](https://i.imgur.com/8pXW0hg.png)   
 - **Remindme**  
-Creates a reminder that will when tag the user at the appropriate time. Uses natural language date inputs with `chrono-node`, so the user can input something like `?remindme in 3 weeks at 4pm "Renew phone contract"`. Stores the reminders in a database and uses a cron job to check old reminders.
+Creates a reminder that will when tag the user at the appropriate time. Uses natural language date inputs with `chrono-node`, so the user can input something like `?remindme in 3 weeks at 4pm "Renew phone contract"`. Stores the reminders in a database and uses a cron job to check old reminders.  
+![Remindme command](https://i.imgur.com/TiyphgK.png)  
 
 ## Usage   
 
