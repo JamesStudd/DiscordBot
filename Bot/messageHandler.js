@@ -1,20 +1,22 @@
+const fs = require("fs");
+const path = require("path");
+
 import settings from "./settings";
 
 const { prefix, cooldown } = settings;
 
-const combine = require("./MessageHandlers/combine");
-const meme = require("./MessageHandlers/meme");
-const genre = require("./MessageHandlers/genre");
-const help = require("./MessageHandlers/help");
-const randomname = require("./MessageHandlers/randomname");
+const commands = {};
 
-const Handlers = {
-	combine,
-	meme,
-	genre,
-	help,
-	randomname,
-};
+const commandFiles = fs
+	.readdirSync(path.join(__dirname, "MessageHandlers"))
+	.filter((file) => file.endsWith(".js"));
+
+commandFiles.forEach((file) => {
+	const command = require(path.join(__dirname, `./MessageHandlers/${file}`));
+	const commandName = file.split(".")[0];
+	commands[commandName] = command;
+	console.log(`Loaded command: ${commandName}`);
+});
 
 let nextMessageAllowed = 0;
 
@@ -31,7 +33,10 @@ export function ProcessMessage(msg) {
 					msg.author.username
 				} at ${date.toLocaleString()}`
 			);
-			Handlers[command](msg, args);
+			if (commands[command]) {
+				commands[command](msg, args);
+			}
+			// TODO: Work out which command they meant if the command is slightly wrong?
 		}
 	}
 }
