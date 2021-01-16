@@ -1,6 +1,6 @@
 const chrono = require("chrono-node");
 const moment = require("moment");
-const Reminder = require("../../Database/Models/reminderModel");
+const Reminder = require("../Database/Models/reminderModel");
 
 module.exports = function (msg, args) {
 	const user = msg.author.id;

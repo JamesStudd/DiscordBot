@@ -1,6 +1,6 @@
 const moment = require("moment");
 const cron = require("node-cron");
-const Reminder = require("./../Database/Models/reminderModel");
+const Reminder = require("./Database/Models/reminderModel");
 
 function timeout(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));

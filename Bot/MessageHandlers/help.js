@@ -30,6 +30,11 @@ export const HelpMessage = {
 			value:
 				"Gets a random genre from EveryNoise as well as a Spotify playlist link.",
 		},
+		{
+			name: '?remindme length_of_time "message"',
+			value:
+				'Creates a reminder with a custom message. E.G. `?remindme in 1 hour "Take the bins out."`. Use this as a reference for how to input length of time https://www.npmjs.com/package/chrono-node. Things like `?remindme next tuesday 3pm "meeting"`',
+		},
 	],
 	timestamp: new Date(),
 	footer: {
