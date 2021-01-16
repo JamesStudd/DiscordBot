@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "nodemon --exec babel-node Bot/app.js",
     "spotify": "nodemon --exec babel-node Spotify/EveryNoiseGenre.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel -d ./build ./Bot --copy-files",
+    "prebuild": "rm -rf build/*",
+    "start": "node ./build/app.js"
   },
   "keywords": [],
   "author": "James Studd",
@@ -20,8 +23,9 @@
     "twemoji": "^13.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/node": "^7.12.1",
-    "@babel/preset-env": "^7.12.1"
+    "@babel/core": "^7.12.9",
+    "@babel/node": "^7.12.6",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.7"
   }
 }

@@ -1,7 +1,7 @@
 require("dotenv").config();
 import { Client } from "discord.js";
 export const client = new Client();
-import { ProcessMessage } from "./MessageHandlers";
+import { ProcessMessage } from "./messageHandler";
 
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}!`);
@@ -13,4 +13,8 @@ client.on("message", (msg) => {
 	ProcessMessage(msg);
 });
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(
+	process.env.NODE_ENV === "production"
+		? process.env.DISCORD_TOKEN
+		: process.env.DISCORD_TOKEN_DEV
+);

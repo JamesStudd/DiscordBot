@@ -1,7 +1,7 @@
 import { Start, Middle, End } from "./options.json";
-import { RandomElement } from "../../Utils/Utils";
+import { RandomElement } from "../../../Utils/randomElement";
 
-export function GetName(input) {
+module.exports = function (input) {
 	let name;
 	if (input) {
 		input = input.toLowerCase();
@@ -30,4 +30,4 @@ export function GetName(input) {
 		return `${name} ${middle} ${last}`;
 	}
 	return `${name} ${middle}${last.toLowerCase()}`;
-}
+};

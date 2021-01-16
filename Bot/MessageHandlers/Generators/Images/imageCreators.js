@@ -1,7 +1,7 @@
 import { createCanvas, loadImage } from "canvas";
 
 const BASE_EMOJI_URL = "https://cdn.discordapp.com/emojis/";
-const BASE_TWEMOJI = "https://twemoji.maxcdn.com/v/13.0.1/";
+const BASE_TWEMOJI = "https://twemoji.maxcdn.com/v/latest/";
 const TWEMOJI_SIZE = "72x72/";
 const FILE_EXTENSION = ".png";
 

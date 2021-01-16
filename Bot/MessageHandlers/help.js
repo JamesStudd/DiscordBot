@@ -37,3 +37,7 @@ export const HelpMessage = {
 		icon_url: "https://i.imgur.com/wSTFkRM.png",
 	},
 };
+
+module.exports = function (msg, args) {
+	msg.channel.send({ embed: HelpMessage });
+};
