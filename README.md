@@ -21,6 +21,8 @@ Posts an embed with the commands and how to use them.
 - **Genre**   
 Gets a random emoji from the scraped "EveryNoise" data, can optionally pass in a word and it'll try and find something related, IE "rock" could bring up "German Post-rock". Posts the genre in the chat as well as a link to the Spotify playlist.    
 ![Genre command](https://i.imgur.com/8pXW0hg.png)   
+- **Remindme**  
+Creates a reminder that will when tag the user at the appropriate time. Uses natural language date inputs with `chrono-node`, so the user can input something like `?remindme in 3 weeks at 4pm "Renew phone contract"`. Stores the reminders in a database and uses a cron job to check old reminders.
 
 ## Usage   
 
@@ -37,8 +39,10 @@ Gets a random emoji from the scraped "EveryNoise" data, can optionally pass in a
     - Go to the "Auth2" tab
     - Click the "Bot" checkbox under "Scopes"
     - Tick the permissions you want the bot to have
-    - Copy the URL and open it, this will give you a list of servers that your bot can join.
-4. Run `npm run dev` 
+    - Copy the URL and open it, this will give you a list of servers that your bot can join.  
+4. Create a `DISCORD_TOKEN_DEV` environment variable when developing, this should be a bot token (refer to the guide above).  
+5. Create a  `MONGODB_URI` environment variable with a connection string to a MongoDB.   
+6. Run `npm run dev` 
 
 ## Libraries Used
 - **Canvas**  
@@ -53,6 +57,15 @@ Gets a random emoji from the scraped "EveryNoise" data, can optionally pass in a
     Makes web requests that are used for scraping the EveryNoise website  
 - **Cheerio**  
     Takes data from web requests and parses it so that it can be searched through for specific html tags  
+- **Chrono-Node**  
+    Allows for natural language dates to be parsed into real dates, for example `next tuesday 3pm` -> `Tue Jan 19 2021 15:00:00 GMT`  
+- **Moment**  
+    Provides some helpful date related functions with parsing, formatting, manipulating. Used to do some validation on the dates inputted by the users   
+- **Mongoose**  
+    Connection to MongoDB to store reminders  
+- **Node-Cron**  
+    Used to setup cron jobs, for example `every day at 3pm` 
+
 
 ### Dev
 - **Babel**  
