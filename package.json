@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel -d ./build ./Bot --copy-files",
     "prebuild": "rm -rf build/*",
-    "start": "node ./build/app.js"
+    "start": "NODE_ENV=production node ./build/app.js"
   },
   "keywords": [],
   "author": "James Studd",
