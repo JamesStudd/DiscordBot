@@ -1,21 +1,35 @@
 const fs = require("fs");
 const path = require("path");
 
-import settings from "./settings";
+const {
+	Settings: { prefix, cooldown },
+} = require("./MessageHandlers/Settings/bot");
 
-const { prefix, cooldown } = settings;
+const { HelpMessage } = require("./MessageHandlers/Settings/help");
 
-const commands = {};
+const commands = {
+	help: function (msg, args) {
+		msg.channel.send({ embed: HelpMessage });
+	},
+};
 
 const commandFiles = fs
-	.readdirSync(path.join(__dirname, "MessageHandlers"))
+	.readdirSync(path.join(__dirname, "MessageHandlers/Commands"))
 	.filter((file) => file.endsWith(".js"));
 
 commandFiles.forEach((file) => {
-	const command = require(path.join(__dirname, `./MessageHandlers/${file}`));
-	const commandName = file.split(".")[0];
-	commands[commandName] = command;
-	console.log(`Loaded command: ${commandName}`);
+	const command = require(path.join(
+		__dirname,
+		`./MessageHandlers/Commands/${file}`
+	));
+	commands[command.name] = command.command;
+
+	HelpMessage.fields.push({
+		name: `${prefix}${command.name}`,
+		value: command.help,
+	});
+
+	console.log(`Loaded command: ${command.name}`);
 });
 
 let nextMessageAllowed = 0;

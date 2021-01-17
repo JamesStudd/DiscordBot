@@ -10,7 +10,7 @@ client.on("ready", () => {
 	client.user.setActivity("?help for commands");
 
 	// Setup crons
-	ReminderCron(client);
+	//ReminderCron(client);
 });
 
 client.on("message", (msg) => {
