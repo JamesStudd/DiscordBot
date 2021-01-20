@@ -25,6 +25,7 @@
     "moment": "^2.29.1",
     "mongoose": "^5.11.12",
     "node-cron": "^2.0.3",
+    "tmi.js": "^1.7.1",
     "twemoji": "^13.0.1"
   },
   "devDependencies": {
