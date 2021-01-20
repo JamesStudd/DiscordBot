@@ -59,7 +59,7 @@ module.exports = {
 			);
 		}
 
-		const fullRoute = `${RAIDER_IO_BASE}${ROUTES.character}?region=eu&realm=${realmName}&name=${charName}&fields=mythic_plus_recent_runs`;
+		const fullRoute = `${RAIDER_IO_BASE}${ROUTES.character}?region=eu&realm=${realmName}&name=${charName}&fields=mythic_plus_weekly_highest_level_runs,mythic_plus_scores_by_season:current`;
 		axios
 			.get(fullRoute)
 			.then((response) => {
@@ -68,17 +68,19 @@ module.exports = {
 					class: fullClass,
 					race,
 					last_crawled_at,
-					mythic_plus_recent_runs,
+					mythic_plus_weekly_highest_level_runs: runs,
+					mythic_plus_scores_by_season: scores,
 					profile_url,
 				} = response.data;
 
 				const runStrings = [];
+				const score = scores[0].scores.all;
 
-				mythic_plus_recent_runs.sort((a, b) => {
+				runs.sort((a, b) => {
 					return b.mythic_level - a.mythic_level;
 				});
 
-				for (const run of mythic_plus_recent_runs) {
+				for (const run of runs) {
 					const dungeon = DUNGEONS.find(
 						(d) => d.ShortName === run.short_name
 					);
@@ -93,22 +95,33 @@ module.exports = {
 
 					const resultString =
 						resultTime > 0 ? `${resultTime} chest` : "DEPLETED";
+
 					runStrings.push(
 						`\t*${dungeon.FullName}* +${
 							run.mythic_level
 						} - **${resultString}** - Time (${time}). Completed: ${moment(
 							run.completed_at
-						).calendar()}`
+						).format("ddd, hA")}`
 					);
 				}
+
+				const dungString =
+					runStrings.length > 0
+						? runStrings.join("\n")
+						: "\tNo dungeons this week :( Fletch won't be happy";
+
 				msg.channel.send(`
-                Results for **${fullName}** the ${race} ${fullClass} (last updated: ${moment(
+                Weekly m+ runs for **${fullName}** the ${race} ${fullClass} (last updated: ${moment(
 					last_crawled_at
-				).calendar()}):\n**Recent Runs**:\n${runStrings.join("\n")}
+				).format(
+					"ddd, hA"
+				)}):\n**Score**: ${score}\n**Dungeons**:\n${dungString}
                 More info at <${profile_url}>`);
 			})
 			.catch((err) => {
-				console.error(err);
+				msg.channel.send(
+					`Unable to find data for *${charName}* on realm *${realmName}* :(`
+				);
 			});
 	},
 };
