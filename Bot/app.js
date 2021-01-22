@@ -7,7 +7,7 @@ import { ReminderCron } from "./cron";
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	client.user.setStatus("available");
-	client.user.setActivity("?help for commands");
+	client.user.setActivity("?help for commands - test");
 
 	// Setup crons
 	ReminderCron(client);
