@@ -30,6 +30,6 @@ jobs:
           HOST: ${{ secrets.HOST }}
           PORT: ${{ secrets.PORT }}
           USER: ${{ secrets.USER }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          passphrase: ${{ secrets.PRIVATE_KEY }}
         with:
           args: 'cd /usr/DiscordBot'
