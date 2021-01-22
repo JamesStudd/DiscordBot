@@ -32,5 +32,4 @@ jobs:
           USER: ${{ secrets.USER }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         with:
-          command: |
-            cd /usr/DiscordBot
+          args: 'cd /usr/DiscordBot'
