@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Run Deploy
+      - name: Connect
         uses: maddox/actions/ssh@master
         env:
           HOST: ${{ secrets.HOST }}
@@ -32,4 +32,5 @@ jobs:
           USER: ${{ secrets.USER }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         with:
-          args: 'cd /usr/DiscordBot && git pull && npm run build && pm2 restart DiscordBot'
+          command: |
+            cd /usr/DiscordBot
