@@ -22,12 +22,13 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Connect
-        uses: maddox/actions/ssh@master
-        env:
-          HOST: ${{ secrets.HOST }}
-          PORT: ${{ secrets.PORT }}
-          USER: ${{ secrets.USER }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+        uses: appleboy/ssh-action@master
         with:
-          args: 'cd /usr/DiscordBot'
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /usr/DiscordBot
+            git pull
+            git status
