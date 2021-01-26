@@ -63,7 +63,7 @@ Creates a reminder that will when tag the user at the appropriate time. Uses nat
 - **Moment**  
     Provides some helpful date related functions with parsing, formatting, manipulating. Used to do some validation on the dates inputted by the users   
 - **Mongoose**  
-    Connection to MongoDB to store reminders  
+    Connection to MongoDB to store reminders.  
 - **Node-Cron**  
     Used to setup cron jobs, for example `every day at 3pm` 
 
