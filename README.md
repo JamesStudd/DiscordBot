@@ -24,6 +24,9 @@ Gets a random emoji from the scraped "EveryNoise" data, can optionally pass in a
 - **Remindme**  
 Creates a reminder that will when tag the user at the appropriate time. Uses natural language date inputs with `chrono-node`, so the user can input something like `?remindme in 3 weeks at 4pm "Renew phone contract"`. Stores the reminders in a database and uses a cron job to check old reminders.  
 ![Remindme command](https://i.imgur.com/TiyphgK.png)  
+- **Keys**  
+Uses the Raider.io API to get "key" information (IE WoW mythic+ dungeons) and posts it to Discord.  
+![Keys command](https://i.imgur.com/fuH6Suw.png)  
 
 ## Usage   
 
