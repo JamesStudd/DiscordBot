@@ -1,8 +1,9 @@
 require("dotenv").config();
 import { Client } from "discord.js";
-export const client = new Client();
 import { ProcessMessage } from "./messageHandler";
 import { ReminderCron } from "./cron";
+
+export const client = new Client();
 
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}!`);
@@ -11,6 +12,9 @@ client.on("ready", () => {
 
 	// Setup crons
 	ReminderCron(client);
+
+	// Setup dashbaord
+	//SetupDashboard(client);
 });
 
 client.on("message", (msg) => {
