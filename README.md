@@ -27,6 +27,9 @@ Creates a reminder that will when tag the user at the appropriate time. Uses nat
 - **Keys**  
 Uses the Raider.io API to get "key" information (IE WoW mythic+ dungeons) and posts it to Discord.  
 ![Keys command](https://i.imgur.com/fuH6Suw.png)  
+- **Osrs**  
+Gets the Old School Runescape Hiscores for a character name passed in, puts the skill levels onto a blank skill background and posts it in chat.  
+![OSRS command](https://i.imgur.com/A67YVlV.png)  
 
 ## Usage   
 
