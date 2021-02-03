@@ -35,15 +35,22 @@ class RunescapeStats {
 			Farming: {},
 		};
 
+		let totalLevel = 0;
 		for (let i = 0; i < order.length; i++) {
 			const element = order[i];
-			const [hiscorePos, level, xp] = arr[i].split(",").map((x) => +x);
+			let [hiscorePos, level, xp] = arr[i].split(",").map((x) => +x);
+			// Little hacky but /shrug
+			if (element === "Hitpoints" && level === 1) {
+				level = 10;
+			}
+			totalLevel += level;
 			this.skills[element] = {
 				hiscorePos,
 				level,
 				xp,
 			};
 		}
+		this.skills["TotalLevel"].level = totalLevel;
 	}
 }
 
