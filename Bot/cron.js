@@ -21,7 +21,7 @@ function SearchAndProcessReminders(client) {
 
 		for (const doc of docs) {
 			const channel = client.channels.cache.get(doc.channel);
-			channel.send(`Reminder for <@${doc.user}>\n"${doc.text}"`);
+			channel.send(`Reminder for <@${doc.user}>\n${doc.text}`);
 			await timeout(500);
 		}
 

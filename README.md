@@ -30,6 +30,12 @@ Uses the Raider.io API to get "key" information (IE WoW mythic+ dungeons) and po
 - **Osrs**  
 Gets the Old School Runescape Hiscores for a character name passed in, puts the skill levels onto a blank skill background and posts it in chat.  
 ![OSRS command](https://i.imgur.com/A67YVlV.png)  
+- **DeleteReminder**  
+Deletes a reminder with a certain ID provided that the user who called the command is the author of the reminder.  
+![DeleteReminder Command](https://i.imgur.com/GZCVs82.png)  
+- **GetReminders**  
+Gets all the users reminders  
+![GetReminders Command](https://i.imgur.com/3ZZOvzT.png)  
 
 ## Usage   
 
@@ -71,7 +77,9 @@ Gets the Old School Runescape Hiscores for a character name passed in, puts the 
 - **Mongoose**  
     Connection to MongoDB to store reminders.  
 - **Node-Cron**  
-    Used to setup cron jobs, for example `every day at 3pm` 
+    Used to setup cron jobs, for example `every day at 3pm`  
+- **Nanoid**  
+    Used to get a small ID. This is used in the reminders so that users can delete their own reminders.
 
 
 ### Dev

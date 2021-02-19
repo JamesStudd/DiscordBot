@@ -1,6 +1,7 @@
 const chrono = require("chrono-node");
 const moment = require("moment");
 const Reminder = require("../../Database/Models/reminderModel");
+const { nanoid } = require("nanoid");
 
 function getUserFromMention(mention, msg) {
 	if (mention.startsWith("<@") && mention.endsWith(">")) {
@@ -38,7 +39,8 @@ module.exports = {
 	help:
 		'Creates a reminder with a custom message. E.G. `?remind me in 1 hour "Take the bins out."`. Can @ other people to set a reminder for them - `?remind @Dinky in 1 hour "u mad cute dog x."`. Use this as a reference for how to input length of time https://www.npmjs.com/package/chrono-node. Things like `?remind me next tuesday 3pm "meeting"`.',
 	command: function (msg, args) {
-		let id = msg.author.id;
+		let author = msg.author.id;
+		let targetId = msg.author.id;
 		const [target, ...rest] = args;
 		const inputString = rest.join(" ");
 
@@ -48,7 +50,7 @@ module.exports = {
 		if (target !== "me") {
 			let targetMember = getUserFromMention(target, msg);
 			if (targetMember) {
-				id = targetMember;
+				targetId = targetMember;
 			}
 		}
 
@@ -68,18 +70,22 @@ module.exports = {
 
 		parsedDate.setSeconds(0, 0);
 
+		const ID = nanoid(10);
+
 		let newReminder = new Reminder({
-			user: id,
+			author,
+			user: targetId,
 			text: inputText,
 			date: parsedDate,
 			channel: msg.channel.id,
+			ID,
 		});
 
 		newReminder
 			.save()
 			.then((_) => {
 				msg.channel.send(
-					`Reminder set for <@${id}>\nDate: ${parsedDate}.`
+					`Reminder set for <@${targetId}>\nDate: ${parsedDate}.\nID: \`${ID}\`. Use command ?deleteReminder {id} to delete reminder.`
 				);
 			})
 			.catch((err) => {

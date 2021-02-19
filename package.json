@@ -5,6 +5,7 @@
   "main": "Bot/app.js",
   "scripts": {
     "dev": "nodemon --exec babel-node Bot/app.js",
+    "debug": "nodemon --exec babel-node --inspect Bot/app.js",
     "spotify": "nodemon --exec babel-node Spotify/EveryNoiseGenre.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel -d ./build ./Bot --copy-files",
@@ -24,6 +25,7 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "mongoose": "^5.11.12",
+    "nanoid": "^3.1.20",
     "node-cron": "^2.0.3",
     "tmi.js": "^1.7.1",
     "twemoji": "^13.0.1"

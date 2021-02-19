@@ -6,6 +6,10 @@ if (
 	mongoose.connection.readyState == 2
 ) {
 	let reminderSchema = mongoose.Schema({
+		author: {
+			type: String,
+			required: true,
+		},
 		user: {
 			type: String,
 			required: true,
@@ -20,6 +24,10 @@ if (
 		},
 		date: {
 			type: Date,
+			required: true,
+		},
+		ID: {
+			type: String,
 			required: true,
 		},
 	});
