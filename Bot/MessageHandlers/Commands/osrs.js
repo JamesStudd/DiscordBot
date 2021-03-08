@@ -43,7 +43,10 @@ class RunescapeStats {
 			if (element === "Hitpoints" && level === 1) {
 				level = 10;
 			}
-			totalLevel += level;
+			// Little hacky but /shrug
+			if (element !== "TotalLevel") {
+				totalLevel += level;
+			}
 			this.skills[element] = {
 				hiscorePos,
 				level,
