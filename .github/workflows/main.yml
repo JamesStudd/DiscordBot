@@ -31,5 +31,6 @@ jobs:
           script: |
             cd /usr/DiscordBot
             git pull
+            npm i
             npm run build
             pm2 restart DiscordBot
