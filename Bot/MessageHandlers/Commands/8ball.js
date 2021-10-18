@@ -4,6 +4,6 @@ module.exports = {
 	name: "8ball",
 	help: "Gives you an answer to any question.",
 	command: async function (msg, args) {
-		msg.channel.send(`${RandomAnswer()}`);
+		msg.channel.send(`:8ball: ${RandomAnswer()} :8ball:`);
 	},
 };
