@@ -6,7 +6,7 @@ module.exports = {
 		'Give it a few options with "option" format, let the bot decide ur life.',
 	command: function (msg, args) {
 		var split = msg.content
-			.split('"')
+			.split(",")
 			.slice(1)
 			.filter((m) => m.trim() != "");
 
