@@ -1,8 +1,7 @@
 import { CreateCombinedImage } from "../Generators/Images/imageCreators";
 import { MessageAttachment } from "discord.js";
-
-const GetEmojiFromInput = require("../Utils/emojiParse");
-const CheckOverridesExist = require("../Utils/overrides");
+import { GetEmojiFromInput } from "../Utils/emojis";
+import { CheckOverridesExist } from "../Utils/emojis";
 
 module.exports = {
 	name: "combine",

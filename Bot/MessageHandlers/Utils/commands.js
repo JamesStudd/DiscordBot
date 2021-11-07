@@ -43,4 +43,4 @@ export function InitializeCommands() {
 		name: "It broke, now what?",
 		value: `Message/Abuse James or Jake or fix it yourself by doing a pull request - https://github.com/JamesStudd/DiscordBot`,
 	});
-}
+};

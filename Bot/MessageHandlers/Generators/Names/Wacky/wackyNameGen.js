@@ -1,5 +1,5 @@
 import { Start, Middle, End } from "./options.json";
-import { RandomElement } from "../../../Utils/randomElement";
+import { RandomElement } from "../../../Utils/random";
 
 module.exports = function (input) {
 	let name;
