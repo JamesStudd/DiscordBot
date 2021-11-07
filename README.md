@@ -43,7 +43,7 @@ Uses advanced AI to get an answer to any yes/no question
 Gets a list of available commands  
 ![Commands Command](https://i.imgur.com/NRgjK4r.png)
 - **Strike**  
-"Bans" a user if they get 3 strikes.
+"Bans" a user if they get 3 strikes.  
 ![Strike command](https://i.imgur.com/BM7Zbue.png)
 
 ## Usage   
