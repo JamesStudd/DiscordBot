@@ -12,9 +12,14 @@ let runescapeBasePositions = {
 	bottom: [120, 70],
 };
 
-registerFont(path.join(__dirname, "Runescape", "RuneScape-Chat-07.ttf"), {
-	family: "Runescape",
-});
+AddFont("RuneScape-Chat-07", "Runescape");
+AddFont("Roboto-Bold", "Roboto");
+
+function AddFont(fileName, family) {
+	registerFont(path.join(__dirname, "Fonts", `${fileName}.ttf`), {
+		family,
+	});
+}
 
 (async () => {
 	runescapeSkillsBase = await loadImage(
@@ -86,7 +91,7 @@ export async function CreateMeme(topText, bottomText, emojis) {
 	context.fillStyle = "white";
 	context.strokeStyle = "black";
 
-	context.font = "30px Impact";
+	context.font = '30px "Roboto"';
 
 	let lines = FitText(topText, context, size);
 
