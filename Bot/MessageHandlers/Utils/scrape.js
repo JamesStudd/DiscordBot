@@ -5,9 +5,10 @@ const countries = require("i18n-iso-countries");
 const BaseNetflixScrapeUrl = "https://unogs.com/search/";
 
 export async function GetNetflixResults(searchTerm) {
-	let url = BaseNetflixScrapeUrl + searchTerm;
+	let encodedSearchTerm = encodeURIComponent(searchTerm);
+	let url = BaseNetflixScrapeUrl + encodedSearchTerm;
 
-	let launchOptions = { headless: true };
+	let launchOptions = { headless: true, args: ["--no-sandbox"] };
 
 	const browser = await puppeteer.launch(launchOptions);
 	const page = await browser.newPage();
