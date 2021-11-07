@@ -1,6 +1,6 @@
 // TODO: Move into a util
 
-import { MillisToMinutesAndSeconds } from "../Utils/millisToMinutesAndSeconds";
+import { MillisToMinutesAndSeconds } from "../Utils/time";
 import { DUNGEONS } from "../Constants/worldOfWarcraftData";
 
 const axios = require("axios");

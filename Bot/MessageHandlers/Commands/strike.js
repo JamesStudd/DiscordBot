@@ -1,6 +1,6 @@
-import { GetMemberFromMention } from "../Utils/getMemberFromMention";
-import { AddRoleById } from "../Utils/addRoleById";
-import { RemoveRoleById } from "../Utils/removeRoleById";
+import { GetMemberFromMention } from "../Utils/mentions";
+import { AddRoleById } from "../Utils/roles";
+import { RemoveRoleById } from "../Utils/roles";
 import { ROLES } from "../Constants/guildData";
 
 module.exports = {

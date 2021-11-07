@@ -1,4 +1,4 @@
-import { GetIdFromMention } from "../Utils/getIdFromMention";
+import { GetIdFromMention } from "../Utils/mentions";
 import { Settings } from "./../Settings/bot";
 
 const chrono = require("chrono-node");

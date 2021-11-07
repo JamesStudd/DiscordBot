@@ -26,4 +26,4 @@ export function CreateHelpCommandEmbed(command) {
 	});
 
 	return embed;
-}
+};

@@ -1,4 +1,4 @@
-import { RandomElement } from "../Utils/randomElement";
+import { RandomElement } from "../Utils/random";
 
 module.exports = {
 	name: "choose",

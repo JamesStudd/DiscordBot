@@ -1,5 +1,5 @@
 import { GetRandomGenre } from "../Spotify/everyNoiseGenre";
-import { CapitalizeFirstLetters } from "../Utils/capitalizeFirstLetters";
+import { CapitalizeFirstLetters } from "../Utils/stringExtensions";
 
 module.exports = {
 	name: "genre",

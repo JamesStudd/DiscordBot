@@ -1,5 +1,5 @@
 const data = require("./cached.json");
-import { RandomElement } from "../Utils/randomElement";
+import { RandomElement } from "../Utils/random";
 
 export function GetRandomGenre(input) {
 	let foundGenre;
