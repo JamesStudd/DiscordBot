@@ -3,8 +3,9 @@ import { CreateNetflixEmbed } from "../Utils/formatter";
 
 module.exports = {
 	name: "netflix",
-	help:
-		"Lets you know which country titles are available in on netflix. Usage: `?netflix Iron Man`",
+	usagePrefix: "name_of_show",
+	examplePrefix: "Rick and Morty",
+	help: "Lets you know which country titles are available in on netflix.",
 	command: async function (msg, args) {
 		let searchTerm = args.join(" ");
 		let message = await msg.channel.send(`Searching for... ${searchTerm}`);

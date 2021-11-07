@@ -1,3 +1,5 @@
+// TODO: Move to utils
+
 const axios = require("axios");
 import { CreateRunescapeSkills } from "../Generators/Images/imageCreators";
 import { MessageAttachment } from "discord.js";
@@ -59,6 +61,8 @@ class RunescapeStats {
 
 module.exports = {
 	name: "osrs",
+	usagePrefix: "character_name",
+	examplePrefix: "HomidaZero",
 	help:
 		"Gets runescape hiscores for a passed in name, can pass in with spaces or without.",
 	command: async function (msg, args) {
