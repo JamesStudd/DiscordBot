@@ -35,7 +35,10 @@ commandFiles.forEach((file) => {
 let nextMessageAllowed = 0;
 
 export function ProcessMessage(msg) {
-	if (!msg.author.bot && msg.content && msg.content[0] === prefix) {
+	if (msg.author.bot || !msg.content)
+		return;
+
+	if (msg.content[0] === prefix) {
 		const args = msg.content.slice(prefix.length).trim().split(" ");
 		const command = args.shift().toLowerCase();
 

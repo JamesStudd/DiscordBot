@@ -1,8 +1,7 @@
 import { GetMemberFromMention } from "../Utils/getMemberFromMention";
 import { AddRoleById } from "../Utils/addRoleById";
 import { RemoveRoleById } from "../Utils/removeRoleById";
-
-import { ROLES } from "../Settings/roles";
+import { ROLES } from "../Constants/guildData";
 
 module.exports = {
     name: "strike",
