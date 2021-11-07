@@ -9,29 +9,55 @@ module.exports = {
 	examplePrefix: "@lyons",
 	help: "Ban someone",
 	command: async function (msg, args) {
-		let body = args.join(" ");
-		let targetMember = GetMemberFromMention(body, msg.channel);
+		const body = args.join(" ");
+		const targetMember = GetMemberFromMention(body, msg.channel);
 		if (!targetMember) return;
 
-		let targetId = targetMember.user.id;
-		let memberRoles = targetMember.roles.cache;
+		const memberRoles = targetMember.roles.cache;
+
+		let data = {
+			guild: msg.guild,
+			channel: msg.channel,
+			target: targetMember,
+			targetId: targetMember.user.id,
+			roleToAdd: undefined,
+			roleToRemove: undefined,
+			message: undefined,
+		};
 
 		if (memberRoles.has(ROLES.LUCKY)) {
-			RemoveRoleById(msg.guild, targetMember, ROLES.LUCKY);
-			msg.channel.send(`<@${targetId}> lucked out this time!`);
+			data.roleToRemove = ROLES.LUCKY;
+			data.message = `lucked out this time!`;
+
 		} else if (memberRoles.has(ROLES.BANNED)) {
-			msg.channel.send(`<@${targetId}> is banned!`);
+			data.message = `is banned!`;
+
 		} else if (memberRoles.has(ROLES.STRIKETWO)) {
-			RemoveRoleById(msg.guild, targetMember, ROLES.STRIKETWO);
-			AddRoleById(msg.guild, targetMember, ROLES.BANNED);
-			msg.channel.send(`<@${targetId}> has been banned!`);
+			data.roleToAdd = ROLES.BANNED;
+			data.roleToRemove = ROLES.STRIKETWO;
+			data.message = `has been banned!`;
+
 		} else if (memberRoles.has(ROLES.STRIKEONE)) {
-			RemoveRoleById(msg.guild, targetMember, ROLES.STRIKEONE);
-			AddRoleById(msg.guild, targetMember, ROLES.STRIKETWO);
-			msg.channel.send(`<@${targetId}> is on their second strike!`);
+			data.roleToAdd = ROLES.STRIKETWO;
+			data.roleToRemove = ROLES.STRIKEONE;
+			data.message = `is on their second strike!`;
+
 		} else {
-			AddRoleById(msg.guild, targetMember, ROLES.STRIKEONE);
-			msg.channel.send(`<@${targetId}> is on their first strike!`);
+			data.roleToAdd = ROLES.STRIKEONE;
+			data.message = `is on their first strike!`;
 		}
+
+		handleData(data)
 	},
+};
+
+function handleData(d) {
+	if (d.roleToRemove)
+		RemoveRoleById(d.guild, d.target, d.roleToRemove);
+
+	if (d.roleToAdd)
+		AddRoleById(d.guild, d.target, d.roleToAdd);
+
+	if (d.message)
+		d.channel.send(`<@${d.targetId}> ${d.message}`);
 };
