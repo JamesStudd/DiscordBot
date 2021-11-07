@@ -1,10 +1,8 @@
+import { Timeout } from "./MessageHandlers/Utils/time";
+
 const moment = require("moment");
 const cron = require("node-cron");
 const Reminder = require("./Database/Models/reminderModel");
-
-function timeout(ms) {
-	return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 function ReminderCron(client) {
 	SearchAndProcessReminders(client);
@@ -22,7 +20,7 @@ function SearchAndProcessReminders(client) {
 		for (const doc of docs) {
 			const channel = client.channels.cache.get(doc.channel);
 			channel.send(`Reminder for <@${doc.user}>\n${doc.text}`);
-			await timeout(500);
+			await Timeout(500);
 		}
 
 		const ids = docs.map((d) => d._id);
