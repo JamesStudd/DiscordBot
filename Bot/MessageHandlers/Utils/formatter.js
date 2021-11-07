@@ -11,8 +11,8 @@ export function CreateNetflixEmbed(data) {
 
 	const description =
 		results.length > ResultCutoff
-			? `Showing ${ResultCutoff} of them...`
-			: `Showing all of them`;
+			? `Showing available countries for ${ResultCutoff} of them...`
+			: `Showing available countries for all of them...`;
 
 	results = results.slice(0, ResultCutoff);
 
