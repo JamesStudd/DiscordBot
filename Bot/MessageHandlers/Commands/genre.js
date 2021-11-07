@@ -1,10 +1,5 @@
 import { GetRandomGenre } from "../Spotify/everyNoiseGenre";
-
-function CapitalizeFirstLetters(sentence) {
-	return sentence.replace(/(^\w{1})|(\s{1}\w{1})/g, (match) =>
-		match.toUpperCase()
-	);
-}
+import { CapitalizeFirstLetters } from "../Utils/capitalizeFirstLetters";
 
 module.exports = {
 	name: "genre",
