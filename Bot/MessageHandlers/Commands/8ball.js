@@ -1,4 +1,5 @@
-import { RandomAnswer } from "../Utils/random";
+import { RandomElement } from "../Utils/random";
+import { EIGHTBALLANSWERS } from "../Constants/collections";
 
 module.exports = {
 	name: "8ball",
@@ -6,6 +7,7 @@ module.exports = {
 	examplePrefix: "does this bot work",
 	help: "Gives you an answer to any question.",
 	command: async function (msg, args) {
-		msg.channel.send(`:8ball: ${RandomAnswer()} :8ball:`);
+		const answer = RandomElement(EIGHTBALLANSWERS);
+		msg.channel.send(`:8ball: ${answer} :8ball:`);
 	},
 };
