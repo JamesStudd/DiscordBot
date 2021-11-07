@@ -4,7 +4,7 @@
   "description": "Just a few unrelated commands for fun",
   "main": "Bot/app.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node Bot/app.js",
+    "dev": "nodemon --ignore ./frontend --exec babel-node Bot/app.js",
     "debug": "nodemon --exec babel-node --inspect Bot/app.js",
     "spotify": "nodemon --exec babel-node Spotify/EveryNoiseGenre.js",
     "test": "echo \"Error: no test specified\" && exit 1",
