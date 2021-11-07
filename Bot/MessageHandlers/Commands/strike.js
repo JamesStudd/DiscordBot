@@ -14,7 +14,7 @@ module.exports = {
             return;
 
         let targetId = targetMember.user.id;
-        let memberRoles = msg.member.roles.cache;
+        let memberRoles = targetMember.roles.cache;
 
         if (memberRoles.has(ROLES.LUCKY)) {
             RemoveRoleById(msg, targetMember, ROLES.LUCKY);
