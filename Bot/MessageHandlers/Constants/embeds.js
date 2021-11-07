@@ -1,4 +1,4 @@
-export const HelpMessage = {
+export const GenericHelpMessage = Object.freeze({
 	color: 0x0099ff,
 	title: "Help",
 	url: "https://discord.js.org",
@@ -7,14 +7,14 @@ export const HelpMessage = {
 		icon_url: "https://i.imgur.com/wSTFkRM.png",
 		url: "https://discord.js.org",
 	},
-	description: "Commands the bot responds to",
+	description: "The HappyFriendTime bot",
 	thumbnail: {
 		url: "https://i.imgur.com/wSTFkRM.png",
 	},
 	fields: [],
 	timestamp: new Date(),
 	footer: {
-		text: "Let James know of any problems / suggestions",
+		text: "Let James or Jake know of any problems / suggestions",
 		icon_url: "https://i.imgur.com/wSTFkRM.png",
 	},
-};
+});

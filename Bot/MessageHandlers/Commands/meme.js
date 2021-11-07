@@ -6,6 +6,8 @@ const CheckOverridesExist = require("../Utils/overrides");
 
 module.exports = {
 	name: "meme",
+	usagePrefix: ":joy: top text - bottom text",
+	examplePrefix: ":joy: this is really - really funny",
 	help: "Posts an emoji with text overlay.",
 	command: async function (msg, args) {
 		let emojis = [];

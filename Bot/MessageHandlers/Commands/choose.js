@@ -2,8 +2,9 @@ import { RandomElement } from "../Utils/randomElement";
 
 module.exports = {
 	name: "choose",
-	help:
-		'Give it a few options with "option" format, let the bot decide ur life.',
+	usagePrefix: '"Option One, Option Two"',
+	examplePrefix: '"League of Legends, Valorant"',
+	help: "Give it a few options, let the bot decide.",
 	command: function (msg, args) {
 		var split = msg.content
 			.split(",")

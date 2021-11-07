@@ -1,9 +1,11 @@
 const Reminder = require("../../Database/Models/reminderModel");
+const { Settings } = require("./../Settings/bot");
 
 module.exports = {
 	name: "deletereminder",
-	help:
-		"Delete a reminder by passing in the ID, E.G. `?deleteReminder {id}. IDs can be found by using `?getreminders`.",
+	usagePrefix: "id",
+	examplePrefix: "n84ndn19",
+	help: `Delete a reminder by passing in the ID. IDs can be found by using "${Settings.prefix}getreminders".`,
 	command: function (msg, args) {
 		let author = msg.author.id;
 		const [targetId, ...rest] = args;

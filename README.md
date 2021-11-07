@@ -16,7 +16,7 @@ Combines X amount of emojis together into a single emoji. This was an idea that 
 Produces an image of an emoji with text overlaid on the top and bottom, similar to the old meme formats, producing:  
 ![Example of meme](https://i.imgur.com/JbON6Un.png)  
 - **Help**    
-Posts an embed with the commands and how to use them.
+Posts an embed with info about the bot. Also can pass in a command name for instructions how to use it.
 ![Help Command](https://i.imgur.com/XIVyPTb.png)  
 - **Genre**   
 Gets a random emoji from the scraped "EveryNoise" data, can optionally pass in a word and it'll try and find something related, IE "rock" could bring up "German Post-rock". Posts the genre in the chat as well as a link to the Spotify playlist.    
@@ -36,6 +36,15 @@ Deletes a reminder with a certain ID provided that the user who called the comma
 - **GetReminders**  
 Gets all the users reminders  
 ![GetReminders Command](https://i.imgur.com/3ZZOvzT.png)  
+- **8ball**  
+Uses advanced AI to get an answer to any yes/no question  
+![8ball Command](https://i.imgur.com/I8KhHdT.png)
+- **Commands**  
+Gets a list of available commands  
+![Commands Command](https://i.imgur.com/NRgjK4r.png)
+- **Strike**  
+"Bans" a user if they get 3 strikes.
+![Strike command](https://i.imgur.com/BM7Zbue.png)
 
 ## Usage   
 
@@ -56,6 +65,10 @@ Gets all the users reminders
 4. Create a `DISCORD_TOKEN_DEV` environment variable when developing, this should be a bot token (refer to the guide above).  
 5. Create a  `MONGODB_URI` environment variable with a connection string to a MongoDB.   
 6. Run `npm run dev` 
+
+## Troubleshooting
+### Node-Canvas error
+If you get an error when running `npm install` relating to Node-Canvas. Try lowering your Node version. This repo was built on `v14.15.0`.
 
 ## Libraries Used
 - **Canvas**  
@@ -80,6 +93,8 @@ Gets all the users reminders
     Used to setup cron jobs, for example `every day at 3pm`  
 - **Nanoid**  
     Used to get a small ID. This is used in the reminders so that users can delete their own reminders.
+- **Puppeteer**
+    Used to scrape sites.
 
 
 ### Dev
