@@ -15,49 +15,44 @@ module.exports = {
 
 		const memberRoles = targetMember.roles.cache;
 
-		let data = {
-			guild: msg.guild,
-			channel: msg.channel,
-			target: targetMember,
-			targetId: targetMember.user.id,
-			roleToAdd: undefined,
-			roleToRemove: undefined,
-			message: undefined,
-		};
-
 		if (memberRoles.has(ROLES.LUCKY)) {
-			data.roleToRemove = ROLES.LUCKY;
-			data.message = `lucked out this time!`;
+			handleCase(msg, targetMember, 
+				undefined, ROLES.LUCKY, 
+				"lucked out this time!"
+			);
 
 		} else if (memberRoles.has(ROLES.BANNED)) {
-			data.message = `is banned!`;
+			handleCase(msg, targetMember, 
+				undefined, undefined, 
+				"is banned!"
+			);
 
 		} else if (memberRoles.has(ROLES.STRIKETWO)) {
-			data.roleToAdd = ROLES.BANNED;
-			data.roleToRemove = ROLES.STRIKETWO;
-			data.message = `has been banned!`;
+			handleCase(msg, targetMember, 
+				ROLES.BANNED, ROLES.STRIKETWO, 
+				"has been banned!"
+			);
 
 		} else if (memberRoles.has(ROLES.STRIKEONE)) {
-			data.roleToAdd = ROLES.STRIKETWO;
-			data.roleToRemove = ROLES.STRIKEONE;
-			data.message = `is on their second strike!`;
+			handleCase(msg, targetMember, 
+				ROLES.STRIKETWO, ROLES.STRIKEONE, 
+				"is on their second strike!"
+			);
 
 		} else {
-			data.roleToAdd = ROLES.STRIKEONE;
-			data.message = `is on their first strike!`;
+			handleCase(msg,targetMember, 
+				ROLES.STRIKEONE, undefined, 
+				"is on their first strike!"
+			);
 		}
-
-		handleData(data)
 	},
 };
 
-function handleData(d) {
-	if (d.roleToRemove)
-		RemoveRoleById(d.guild, d.target, d.roleToRemove);
-
-	if (d.roleToAdd)
-		AddRoleById(d.guild, d.target, d.roleToAdd);
-
-	if (d.message)
-		d.channel.send(`<@${d.targetId}> ${d.message}`);
-};
+function handleCase(msg, target, roleToAdd, roleToRemove, message) {
+	if (roleToRemove) 
+		RemoveRoleById(msg.guild, target, roleToRemove);
+	if (roleToAdd) 
+		AddRoleById(msg.guild, target, roleToAdd);
+	if (message) 
+		msg.channel.send(`<@${target.user.id}> ${message}`);
+}
