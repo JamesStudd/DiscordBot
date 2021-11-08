@@ -3,8 +3,8 @@ import { RandomInteger } from "../Utils/random";
 
 module.exports = {
 	name: "roll",
-	usagePrefix: '"x y"',
-	examplePrefix: '"2 6"',
+	usagePrefix: 'x y',
+	examplePrefix: '2 6',
 	help: "Rolls x number of y-sided dice. Will also roll 1dx if y is unspecified",
 	command: function (msg, args) {
         if (!args || !IsNumeric(args[0])) return;
