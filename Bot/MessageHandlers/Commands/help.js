@@ -7,7 +7,7 @@ module.exports = {
 	example: "combine",
 	help:
 		"Gives general help, or usage of a specific command if an argument is supplied.",
-	command: async function (msg, args) {
+	command: function (msg, args) {
 		if (args.length > 0) {
 			var command = Commands[args[0]];
 			if (command) {

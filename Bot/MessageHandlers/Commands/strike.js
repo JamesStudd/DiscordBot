@@ -8,7 +8,7 @@ module.exports = {
 	usagePrefix: "@person",
 	examplePrefix: "@lyons",
 	help: "Ban someone",
-	command: async function (msg, args) {
+	command: function (msg, args) {
 		let body = args.join(" ");
 		let targetMember = GetMemberFromMention(body, msg.channel);
 		if (!targetMember) return;
