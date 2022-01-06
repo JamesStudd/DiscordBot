@@ -5,6 +5,7 @@ const {
 	Settings: { prefix },
 } = require("./../Settings/bot");
 const { CreateClone } = require("./../Utils/objectExtensions");
+const scopes = require("./../Middleware/scopes");
 
 const commandFiles = fs
 	.readdirSync(path.join(__dirname, "./../Commands/"))
@@ -23,6 +24,7 @@ export function InitializeCommands() {
 			usagePrefix: command.usagePrefix,
 			examplePrefix: command.examplePrefix,
 			execute: command.command,
+			scopes: command.scopes ?? [scopes.Everyone],
 		};
 
 		console.log(`Loaded command: ${command.name}`);
@@ -43,4 +45,4 @@ export function InitializeCommands() {
 		name: "It broke, now what?",
 		value: `Message/Abuse James or Jake or fix it yourself by doing a pull request - https://github.com/JamesStudd/DiscordBot`,
 	});
-};
+}

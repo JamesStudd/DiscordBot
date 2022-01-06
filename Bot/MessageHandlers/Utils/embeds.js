@@ -11,6 +11,11 @@ export function CreateHelpCommandEmbed(command) {
 	let example = command.examplePrefix ?? "";
 
 	embed.fields.push({
+		name: "Scope",
+		value: command.scopes.map((e) => e.name).join(", "),
+	});
+
+	embed.fields.push({
 		name: "Usage",
 		value: `${Settings.prefix}${command.name} ${usage}`,
 	});
@@ -26,4 +31,4 @@ export function CreateHelpCommandEmbed(command) {
 	});
 
 	return embed;
-};
+}

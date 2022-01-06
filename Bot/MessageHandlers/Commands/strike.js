@@ -2,12 +2,14 @@ import { GetMemberFromMention } from "../Utils/mentions";
 import { AddRoleById } from "../Utils/roles";
 import { RemoveRoleById } from "../Utils/roles";
 import { ROLES } from "../Constants/guildData";
+import { AdminScope } from "../Middleware/scopes";
 
 module.exports = {
 	name: "strike",
 	usagePrefix: "@person",
 	examplePrefix: "@lyons",
 	help: "Ban someone",
+	scopes: [AdminScope],
 	command: function (msg, args) {
 		let body = args.join(" ");
 		let targetMember = GetMemberFromMention(body, msg.channel);

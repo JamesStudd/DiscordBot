@@ -8,6 +8,17 @@ let nextMessageAllowed = 0;
 
 InitializeCommands();
 
+function GetUserHasScope(command, user) {
+	let hasScope = false;
+
+	for (let i = 0; i < command.scopes.length; i++) {
+		const scope = command.scopes[i];
+		hasScope = hasScope || scope.conditions(user);
+	}
+
+	return hasScope;
+}
+
 export function ProcessMessage(msg) {
 	if (msg.author.bot || !msg.content) return;
 
@@ -23,8 +34,18 @@ export function ProcessMessage(msg) {
 					msg.author.username
 				} at ${date.toLocaleString()}`
 			);
-			if (Commands[command]) {
-				Commands[command].execute(msg, args);
+
+			const foundCommand = Commands[command];
+			if (foundCommand) {
+				if (GetUserHasScope(foundCommand, msg.member)) {
+					foundCommand.execute(msg, args);
+				} else {
+					msg.channel.send(
+						`You do not have the permission to use this command. Required Permissions: ${foundCommand.scopes
+							.map((e) => e.name)
+							.join(", ")}.`
+					);
+				}
 			}
 		}
 	}
