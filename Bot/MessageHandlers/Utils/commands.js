@@ -5,6 +5,7 @@ const {
 	Settings: { prefix },
 } = require("./../Settings/bot");
 const { CreateClone } = require("./../Utils/objectExtensions");
+const scopes = require("./../Middleware/scopes");
 
 const commandFiles = fs
 	.readdirSync(path.join(__dirname, "./../Commands/"))
@@ -23,7 +24,7 @@ export function InitializeCommands() {
 			usagePrefix: command.usagePrefix,
 			examplePrefix: command.examplePrefix,
 			execute: command.command,
-			scopes: command.scopes ?? [() => true],
+			scopes: command.scopes ?? [scopes.Everyone],
 		};
 
 		console.log(`Loaded command: ${command.name}`);

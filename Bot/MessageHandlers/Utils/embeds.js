@@ -2,6 +2,10 @@ const { GenericHelpMessage } = require("./../Constants/embeds");
 const { CreateClone } = require("./../Utils/objectExtensions");
 const { Settings } = require("./../Settings/bot");
 
+function ScopesToString(command) {
+	return command.scopes.map((e) => e.name).join(", ");
+}
+
 export function CreateHelpCommandEmbed(command) {
 	var embed = CreateClone(GenericHelpMessage);
 
@@ -9,6 +13,11 @@ export function CreateHelpCommandEmbed(command) {
 
 	let usage = command.usagePrefix ?? "";
 	let example = command.examplePrefix ?? "";
+
+	embed.fields.push({
+		name: "Scope",
+		value: ScopesToString(command),
+	});
 
 	embed.fields.push({
 		name: "Usage",
@@ -26,4 +35,4 @@ export function CreateHelpCommandEmbed(command) {
 	});
 
 	return embed;
-};
+}

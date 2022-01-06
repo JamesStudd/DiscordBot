@@ -1,5 +1,15 @@
 import { ADMINISTRATOR } from "./../Constants/permissions";
 
-export function AdminScope(user) {
-	return user.hasPermission(ADMINISTRATOR);
-}
+export const Everyone = {
+	name: "Everyone",
+	conditions: function (user) {
+		return true;
+	},
+};
+
+export const AdminScope = {
+	name: "Admin",
+	conditions: function (user) {
+		return user.hasPermission(ADMINISTRATOR);
+	},
+};

@@ -13,7 +13,7 @@ function GetUserHasScope(command, user) {
 
 	for (let i = 0; i < command.scopes.length; i++) {
 		const scope = command.scopes[i];
-		hasScope = hasScope || scope(user);
+		hasScope = hasScope || scope.conditions(user);
 	}
 
 	return hasScope;
