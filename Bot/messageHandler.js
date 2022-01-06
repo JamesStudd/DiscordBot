@@ -36,8 +36,16 @@ export function ProcessMessage(msg) {
 			);
 
 			const foundCommand = Commands[command];
-			if (foundCommand && GetUserHasScope(foundCommand, msg.member)) {
-				foundCommand.execute(msg, args);
+			if (foundCommand) {
+				if (GetUserHasScope(foundCommand, msg.member)) {
+					foundCommand.execute(msg, args);
+				} else {
+					msg.channel.send(
+						`You do not have the permission to use this command. Required Permissions: ${foundCommand.scopes
+							.map((e) => e.name)
+							.join(", ")}.`
+					);
+				}
 			}
 		}
 	}
