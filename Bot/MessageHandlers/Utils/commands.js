@@ -23,6 +23,7 @@ export function InitializeCommands() {
 			usagePrefix: command.usagePrefix,
 			examplePrefix: command.examplePrefix,
 			execute: command.command,
+			scopes: command.scopes ?? [() => true],
 		};
 
 		console.log(`Loaded command: ${command.name}`);
@@ -43,4 +44,4 @@ export function InitializeCommands() {
 		name: "It broke, now what?",
 		value: `Message/Abuse James or Jake or fix it yourself by doing a pull request - https://github.com/JamesStudd/DiscordBot`,
 	});
-};
+}
