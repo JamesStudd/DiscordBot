@@ -1,3 +1,4 @@
+import { monthsShort } from "moment";
 import { GetIdFromMention } from "../Utils/mentions";
 import { Settings } from "./../Settings/bot";
 
@@ -30,6 +31,9 @@ module.exports = {
 		}
 
 		if (!parsedDate) {
+			msg.channel.send(
+				`\`${inputDate}\` was in the incorrect format. Try using Natural language, E.G. \`this friday at 13:00\` or \`2 weeks from now\``
+			);
 			return;
 		}
 
@@ -40,6 +44,9 @@ module.exports = {
 			momentDate.isBefore(momentNow) ||
 			Math.ceil(momentDate.diff(momentNow, "minutes", true)) <= 4
 		) {
+			msg.channel.send(
+				`Date was before now, or less than 5 minutes in the future.`
+			);
 			return;
 		}
 
