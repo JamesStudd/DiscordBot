@@ -13,7 +13,7 @@ const ROUTES = {
 
 module.exports = {
 	name: "keys",
-	usagePrefix: "realm_name character_name",
+	usagePrefix: "character_name realm_name",
 	examplePrefix: "loathing ragnaros",
 	help: "Gets recently completed keys and whether they were depleted or not.",
 	command: async function (msg, args) {
