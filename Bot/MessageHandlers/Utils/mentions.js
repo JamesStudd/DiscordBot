@@ -10,7 +10,10 @@ export const GetMemberFromMention = (mention, channel) => {
 			return foundMember;
 		}
 
-		return undefined;
+		const foundMember = channel.members.find(
+			(member) => member.user.id === mention
+		);
+		return foundMember;
 	}
 };
 
