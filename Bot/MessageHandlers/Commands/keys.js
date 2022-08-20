@@ -47,23 +47,16 @@ module.exports = {
 				});
 
 				for (const run of runs) {
-					const dungeon = DUNGEONS.find(
-						(d) => d.ShortName === run.short_name
-					);
 					const time = MillisToMinutesAndSeconds(run.clear_time_ms);
 
-					var resultTime = 0;
-					for (const medalTime of dungeon.Times) {
-						if (time < medalTime) {
-							resultTime++;
-						}
-					}
-
+					var resultTime = run.num_keystone_upgrades;
 					const resultString =
-						resultTime > 0 ? `${resultTime} chest` : "DEPLETED";
+						resultTime > 0
+							? `${run.num_keystone_upgrades} chest`
+							: "DEPLETED";
 
 					runStrings.push(
-						`\t*${dungeon.FullName}* +${
+						`\t*${run.dungeon}* +${
 							run.mythic_level
 						} - **${resultString}** - Time (${time}). Completed: ${moment(
 							run.completed_at
@@ -85,6 +78,7 @@ module.exports = {
                 More info at <${profile_url}>`);
 			})
 			.catch((err) => {
+				console.log(err);
 				msg.channel.send(
 					`Unable to find data for *${charName}* on realm *${realmName}* :(`
 				);
