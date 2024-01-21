@@ -1,19 +1,20 @@
 import { GetMemberFromMention } from "../Utils/mentions";
-import { IncrementStrike } from "../Strike/increment";
+import { DecrementStrike } from "../Strike/decrement";
 import { AdminScope } from "../Middleware/scopes";
 
 module.exports = {
-	name: "strike",
+	name: "unstrike",
 	usagePrefix: "@person",
 	examplePrefix: "@lyons",
-	help: "Ban someone",
+	help: "Unban someone",
 	scopes: [AdminScope],
 	command: function (msg, args) {
 		const body = args.join(" ");
 		const targetMember = GetMemberFromMention(body, msg.channel);
 		if (!targetMember) return;
 
-		const message = IncrementStrike(msg.guild, targetMember)
+		const message = DecrementStrike(msg.guild, targetMember)
 		msg.channel.send(message);
 	},
 };
+
