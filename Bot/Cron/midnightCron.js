@@ -7,7 +7,6 @@ import { ROLES } from "../MessageHandlers/Constants/guildData";
 const cron = require("node-cron");
 
 function MidnightCron(client) {
-	RunMidnightTasks(client);
 	cron.schedule("0 0 * * *", () => {
 		RunMidnightTasks(client);
 	});
@@ -36,7 +35,8 @@ function RunMidnightTasks(client) {
 
 		if (memberRoles.has(ROLES.EMPEROR)) {
 			willingMemberIds.push(member.user.id);
-			willingMemberIds.push(member.user.id);		}
+			willingMemberIds.push(member.user.id);
+		}
 	});
 
 	const randomMember = membersCache.get(RandomElement(willingMemberIds));

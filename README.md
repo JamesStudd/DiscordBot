@@ -71,7 +71,7 @@ Gets a list of available commands
 If you get an error when running `npm install` relating to Node-Canvas. Try lowering your Node version. This repo was built on `v14.15.0`.
 
 ### Bot is running fine, but message content is empty
-An update to the Discord bot application made privaledged gateway intentions disabled by default.
+An update to the Discord bot application made privileged gateway intentions disabled by default.
     - Go to https://discord.com/developers/applications
     - Select application > Bot > Privileged Gateway Intents
     - Make sure 'MESSAGE CONTENT INTENT' is enabled
