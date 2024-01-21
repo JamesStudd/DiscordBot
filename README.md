@@ -1,6 +1,6 @@
 # Discord Bot
 
-Just a small Discord bot used on our server, so far has 4 commands:  
+Just a small Discord bot used on our server, so far has a variety of commands:  
 
 - **RandomName**     
 Produces a random name from the template [FirstName] [Adjective/Quantity][Verb], also uses alliteration if possible, producing names like:  
@@ -69,6 +69,13 @@ Gets a list of available commands
 ## Troubleshooting
 ### Node-Canvas error
 If you get an error when running `npm install` relating to Node-Canvas. Try lowering your Node version. This repo was built on `v14.15.0`.
+
+### Bot is running fine, but message content is empty
+An update to the Discord bot application made privaledged gateway intentions disabled by default.
+    - Go to https://discord.com/developers/applications
+    - Select application > Bot > Privileged Gateway Intents
+    - Make sure 'MESSAGE CONTENT INTENT' is enabled
+    - Enable any other intents that apply
 
 ## Libraries Used
 - **Canvas**  
