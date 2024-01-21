@@ -1,8 +1,8 @@
-import { Timeout } from "./MessageHandlers/Utils/time";
+import { Timeout } from "../MessageHandlers/Utils/time";
 
 const moment = require("moment");
 const cron = require("node-cron");
-const Reminder = require("./Database/Models/reminderModel");
+const Reminder = require("../Database/Models/reminderModel");
 
 function ReminderCron(client) {
 	SearchAndProcessReminders(client);
