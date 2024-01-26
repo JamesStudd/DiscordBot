@@ -13,14 +13,17 @@ function MidnightCron(client) {
 }
 
 function RunMidnightTasks(client) {
-	// The section below gets the first guild from the list
-	// This won't work if the bot is in multiple servers
+	// Temporary fix for multiple servers -
+	// only looks for HappyFriendTime
 	const guildsCache = client.guilds.cache;
-	const guildId = guildsCache.keys().next().value;
-	const guild = guildsCache.get(guildId);
-	const membersCache = guild.members.cache;
+	const happyFriendTimeId = 380375603796246528;
+	const guild = guildsCache.get(happyFriendTimeId);
+	if (guild == undefined) {
+		return;
+	}
 
 	let willingMemberIds = [];
+	const membersCache = guild.members.cache;
 	membersCache.forEach(member => {
 		DecrementStrike(guild, member);
 
