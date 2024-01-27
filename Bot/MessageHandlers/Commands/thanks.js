@@ -14,8 +14,6 @@ module.exports = {
         UserData.find({ user: author }, async (err, docs) => {
             if (err) return console.error(err);
 
-            console.log(docs);
-
             if (!docs || docs.length === 0) {
                 let newUserData = new UserData({
                     user: author,
