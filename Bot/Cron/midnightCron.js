@@ -16,7 +16,7 @@ function RunMidnightTasks(client) {
 	// Temporary fix for multiple servers -
 	// only looks for HappyFriendTime
 	const guildsCache = client.guilds.cache;
-	const happyFriendTimeId = 380375603796246528;
+	const happyFriendTimeId = '380375603796246528';
 	const guild = guildsCache.get(happyFriendTimeId);
 	if (guild == undefined) {
 		return;
