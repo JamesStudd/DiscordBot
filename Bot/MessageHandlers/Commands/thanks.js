@@ -19,13 +19,12 @@ module.exports = {
                     user: author,
                     thanksGiven: 1,
                 });
-        
                 newUserData.save().catch((err) => console.log(err));
                 return;
             };
 
             if (docs.length > 1) {
-                console.warn(`Multiple docs found under user id: ${author}`);
+                console.error(`Multiple docs found under user id: ${author}`);
                 return;
             }
 
