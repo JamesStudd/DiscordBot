@@ -26,20 +26,22 @@ function RunMidnightTasks(client) {
 	let willingMemberIds = [];
 	const membersCache = guild.members.cache;
 	membersCache.forEach(member => {
+		const memberId = member.user.id;
+		const memberRoles = member.roles.cache;
+
 		DecrementStrike(guild, member);
 
-		let memberRoles = member.roles.cache;
 		if (memberRoles.has(ROLES.LUCKY)) {
-			RemoveRoleById(guild, member.user.id, ROLES.LUCKY);
+			RemoveRoleById(guild, memberId, ROLES.LUCKY);
 		}
 
 		if (memberRoles.has(ROLES.WILLING)) {
-			willingMemberIds.push(member.user.id);
+			willingMemberIds.push(memberId);
 		}
 
 		if (memberRoles.has(ROLES.EMPEROR)) {
-			willingMemberIds.push(member.user.id);
-			willingMemberIds.push(member.user.id);
+			willingMemberIds.push(memberId);
+			willingMemberIds.push(memberId);
 		}
 	});
 
