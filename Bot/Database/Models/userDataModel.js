@@ -12,7 +12,11 @@ if (
 		},
 		thanksGiven: {
 			type: Number,
-			required: true,
+			required: false,
+		},
+		timesLucky: {
+			type: Number,
+			required: false,
 		},
 	});
 

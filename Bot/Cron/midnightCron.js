@@ -5,6 +5,7 @@ import { RemoveRoleById } from "../MessageHandlers/Utils/roles";
 import { ROLES } from "../MessageHandlers/Constants/guildData";
 
 const cron = require("node-cron");
+const UserData = require("../Database/Models/userDataModel");
 
 function MidnightCron(client) {
 	cron.schedule("0 0 * * *", () => {
@@ -42,8 +43,31 @@ function RunMidnightTasks(client) {
 		}
 	});
 
-	const randomMember = membersCache.get(RandomElement(willingMemberIds));
+	const randomUserId = RandomElement(willingMemberIds);
+	const randomMember = membersCache.get(randomUserId);
 	AddRoleById(guild, randomMember, ROLES.LUCKY);
+
+	UserData.find({ user: randomUserId }, async (err, docs) => {
+		if (err) return console.error(err);
+
+		if (!docs || docs.length === 0) {
+			let newUserData = new UserData({
+				user: randomUserId,
+				timesLucky: 1,
+			});
+			newUserData.save().catch((err) => console.log(err));
+			return;
+		};
+
+		if (docs.length > 1) {
+			console.error(`Multiple docs found under user id: ${randomUserId}`);
+			return;
+		}
+
+		const doc = docs[0];
+		doc.timesLucky = (doc.timesLucky === undefined) ? 1 : doc.timesLucky + 1;
+		doc.save().catch((err) => console.log(err));
+	});
 }
 
 module.exports = {
