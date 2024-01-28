@@ -30,7 +30,7 @@ function RunMidnightTasks(client) {
 
 		let memberRoles = member.roles.cache;
 		if (memberRoles.has(ROLES.LUCKY)) {
-			RemoveRoleById(guild, member, ROLES.LUCKY);
+			RemoveRoleById(guild, member.user.id, ROLES.LUCKY);
 		}
 
 		if (memberRoles.has(ROLES.WILLING)) {
