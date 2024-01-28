@@ -16,23 +16,25 @@ function MidnightCron(client) {
 function RunMidnightTasks(client) {
 	// Temporary fix for multiple servers -
 	// only looks for HappyFriendTime
+	 
 	const guildsCache = client.guilds.cache;
 	const happyFriendTimeId = '380375603796246528';
 	const guild = guildsCache.get(happyFriendTimeId);
-	if (guild == undefined) {
-		return;
-	}
+	if (guild == undefined) return;
+	guild.members.fetch().then(members => ApplyRoleChanges(guild, members));
+}
 
+function ApplyRoleChanges(guild, members) {
 	let willingMemberIds = [];
-	const membersCache = guild.members.cache;
-	membersCache.forEach(member => {
+
+	members.forEach(member => {
 		const memberId = member.user.id;
 		const memberRoles = member.roles.cache;
 
 		DecrementStrike(guild, member);
 
 		if (memberRoles.has(ROLES.LUCKY)) {
-			RemoveRoleById(guild, memberId, ROLES.LUCKY);
+			RemoveRoleById(guild, member, ROLES.LUCKY);
 		}
 
 		if (memberRoles.has(ROLES.WILLING)) {
@@ -46,7 +48,7 @@ function RunMidnightTasks(client) {
 	});
 
 	const randomUserId = RandomElement(willingMemberIds);
-	const randomMember = membersCache.get(randomUserId);
+	const randomMember = members.get(randomUserId);
 	AddRoleById(guild, randomMember, ROLES.LUCKY);
 
 	UserData.find({ user: randomUserId }, async (err, docs) => {
