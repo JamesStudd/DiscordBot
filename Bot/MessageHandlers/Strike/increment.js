@@ -1,30 +1,29 @@
 import { AddRoleById } from "../Utils/roles";
 import { RemoveRoleById } from "../Utils/roles";
-import { ROLES } from "../Constants/guildData";
 
-export function IncrementStrike(guild, member) {
+export function IncrementStrike(guild, member, roleIds) {
 	let targetId = member.user.id;
 	let memberRoles = member.roles.cache;
 
-	if (memberRoles.has(ROLES.LUCKY)) {
-		RemoveRoleById(guild, member, ROLES.LUCKY);
+	if (memberRoles.has(roleIds.LUCKY)) {
+		RemoveRoleById(guild, member, roleIds.LUCKY);
 		return `<@${targetId}> lucked out this time!`;
 
-	} else if (memberRoles.has(ROLES.BANNED)) {
+	} else if (memberRoles.has(roleIds.STRIKE3)) {
 		return `<@${targetId}> is banned!`;
 
-	} else if (memberRoles.has(ROLES.STRIKETWO)) {
-		RemoveRoleById(guild, member, ROLES.STRIKETWO);
-		AddRoleById(guild, member, ROLES.BANNED);
+	} else if (memberRoles.has(roleIds.STRIKE2)) {
+		RemoveRoleById(guild, member, roleIds.STRIKE2);
+		AddRoleById(guild, member, roleIds.STRIKE3);
 		return `<@${targetId}> has been banned!`;
 
-	} else if (memberRoles.has(ROLES.STRIKEONE)) {
-		RemoveRoleById(guild, member, ROLES.STRIKEONE);
-		AddRoleById(guild, member, ROLES.STRIKETWO);
+	} else if (memberRoles.has(roleIds.STRIKE1)) {
+		RemoveRoleById(guild, member, roleIds.STRIKE1);
+		AddRoleById(guild, member, roleIds.STRIKE2);
 		return `<@${targetId}> is on their second strike!`;
 
 	} else {
-		AddRoleById(guild, member, ROLES.STRIKEONE);
+		AddRoleById(guild, member, roleIds.STRIKE1);
 		return `<@${targetId}> is on their first strike!`;
 	}
 }
