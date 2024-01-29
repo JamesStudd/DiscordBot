@@ -1,8 +1,8 @@
 export const ROLES = {
-    LUCKY : "902322660262957056",
-    STRIKEONE : "896026304237932565",
-    STRIKETWO : "906695092230832139",
-    BANNED : "614522888372092928",
-    WILLING : "644912832881754122",
-    EMPEROR : "635595106488942602",
+    ADMIN : "This tag is reserved for the highest authority in the guild.",
+    MEMBER : "Users with this tag frequent calls/chats, and are given a chance to become LUCKY.",
+    LUCKY : "A tag to represent the luckiest MEMBER of the day.",
+    STRIKE1 : "The first of three tags in the strike process.",
+    STRIKE2 : "The second of three tags in the strike process.",
+    STRIKE3 : "The final tag in the strike process.",
 }
