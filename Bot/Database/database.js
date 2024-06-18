@@ -11,6 +11,8 @@ mongoose.connect(
 			console.error(
 				"Database error, check credentials and restart server"
 			);
+		} else {
+			console.log('Connected to DB successfully')
 		}
 	}
 );
