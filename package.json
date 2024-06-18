@@ -30,7 +30,8 @@
     "node-cron": "^2.0.3",
     "puppeteer": "^11.0.0",
     "tmi.js": "^1.7.1",
-    "twemoji": "^13.0.1"
+    "twemoji": "^13.0.1",
+    "universal-emoji-parser": "^1.0.127"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

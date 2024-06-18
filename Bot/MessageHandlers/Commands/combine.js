@@ -20,6 +20,10 @@ module.exports = {
 			}
 			emojis.push({ type, id, overrides });
 		}
+		if (emojis.length === 0) {
+			msg.channel.send("You must provide emojis!");
+			return;
+		}
 		let image = await CreateCombinedImage(emojis);
 		msg.channel.send("", {
 			files: [new MessageAttachment(image, "combined.png")],
